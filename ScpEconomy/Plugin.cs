@@ -8,6 +8,9 @@ namespace ScpEconomy
 
         public static Plugin Instance { get; private set; }
 
+        [PluginConfig]
+        public Config Config;
+
         [PluginEntryPoint("ScpEconomy", PluginVersion, "Plugin that adds economy to your SCP:SL server.", "w36131")]
         public void OnLoad()
         {
