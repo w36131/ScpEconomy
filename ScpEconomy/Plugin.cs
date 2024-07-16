@@ -1,4 +1,5 @@
-﻿using PluginAPI.Core.Attributes;
+﻿using PluginAPI.Core;
+using PluginAPI.Core.Attributes;
 
 namespace ScpEconomy
 {
@@ -15,6 +16,8 @@ namespace ScpEconomy
         public void OnLoad()
         {
             Instance = this;
+
+            ServerConsole.AddLog($"ScpEconomy [{PluginVersion}] has been loaded.");
         }
 
         public void OnUnload()
