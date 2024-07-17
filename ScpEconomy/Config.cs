@@ -1,7 +1,4 @@
-﻿using PluginAPI.Helpers;
-using System.IO;
-
-namespace ScpEconomy
+﻿namespace ScpEconomy
 {
     public class Config
     {
