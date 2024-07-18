@@ -38,11 +38,16 @@
     <Reference Include="Assembly-CSharp-firstpass">
       <HintPath>D:\References\SCP Secret Laboratory Dedicated Server\13.5.0\Assembly-CSharp-firstpass.dll</HintPath>
     </Reference>
+    <Reference Include="CommandSystem.Core, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\References\SCP Secret Laboratory Dedicated Server\13.5.0\CommandSystem.Core.dll</HintPath>
+    </Reference>
     <Reference Include="PluginAPI">
       <HintPath>D:\References\SCP Secret Laboratory Dedicated Server\13.5.0\PluginAPI.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -57,7 +62,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\DataManagement.cs" />
+    <Compile Include="API\DataObjects\CollectableVirtualItem.cs" />
     <Compile Include="API\DataObjects\PlayerData.cs" />
+    <Compile Include="API\DataObjects\InventoryVirtualItem.cs" />
+    <Compile Include="API\DataObjects\VirtualItem.cs" />
+    <Compile Include="Commands\ScpEconomyParentCommand.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -70,6 +70,8 @@ namespace ScpEconomy
                 using (FileStream fileStream = File.Create(PlayerDataDirectory + $"\\{ev.Player.UserId}.json"))
                 {
                     fileStream.Write(JsonSerializer.Serialize(playerData), 0, JsonSerializer.Serialize(playerData).Length);
+
+                    fileStream.Close();
                 }
             }
             catch (Exception e)
