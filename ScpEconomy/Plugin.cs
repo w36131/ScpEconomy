@@ -32,15 +32,8 @@ namespace ScpEconomy
 
             PlayerDataDirectory = Path.Combine(Path.GetDirectoryName(PluginHandler.Get(this).MainConfigPath), "PlayerData");
 
-            try
-            {
-                if (!Directory.Exists(PlayerDataDirectory))
-                    Directory.CreateDirectory(PlayerDataDirectory);
-            }
-            catch (Exception ex)
-            {
-                ServerConsole.AddLog($"[ScpEconomy:ERROR] Exception has been thrown: {ex}.", ConsoleColor.Red);
-            }
+            if (!Directory.Exists(PlayerDataDirectory))
+                Directory.CreateDirectory(PlayerDataDirectory);
 
             EventManager.RegisterAllEvents(this);
         }
@@ -81,9 +74,9 @@ namespace ScpEconomy
                     fileStream.Close();
                 }
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                ServerConsole.AddLog($"[ScpEconomy:ERROR] Exception has been thrown: {ex}.", ConsoleColor.Red);
+                ServerConsole.AddLog($"[ScpEconomy:ERROR] Exception has been thrown: {e}.", ConsoleColor.Red);
             }
         }
     }

@@ -1,32 +1,29 @@
 ﻿using CommandSystem;
-using ScpEconomy.Commands.Administrative;
-using ScpEconomy.Commands.Economy;
 using System;
 
 namespace ScpEconomy.Commands
 {
+    [CommandHandler(typeof(ClientCommandHandler))]
     [CommandHandler(typeof(RemoteAdminCommandHandler))]
-    public class ScpEconomyParentCommand : ParentCommand, ICommand
+    public class ScpEconomyParentCommand : ParentCommand
     {
-        public ScpEconomyParentCommand() => LoadGeneratedCommands();
-
         public override string Command => "ScpEconomy";
-        public override string[] Aliases { get; } = { "ScpEco" };
+        public override string[] Aliases => new string[] { "economy", "eco" };
         public override string Description => "ScpEconomy parent command.";
-        public bool SanitizeResponse => false;
+        public bool SanatizeResponse => false;
 
         public override void LoadGeneratedCommands()
         {
-            RegisterCommand(new SetBalance());
+            
         }
 
         protected override bool ExecuteParent(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
-            response = "You didin't provide any sub-command.\n\n All available sub-commands:\n";
+            response = "<color=#ff0000>You didin't provide a subcommand.</color>\n\n<color=#009900>All avilable subcommands:</color>\n";
 
             foreach (var command in AllCommands)
             {
-                response += $"\n  <b>{command.Command}</b>\n  <size=20%>{command.Description}</size>\n";
+                response += $"<color=#00cc00>> {command.Command}</color>\n  <color=#ffffff>{command.Description}</color>\n\n";
             }
 
             return false;

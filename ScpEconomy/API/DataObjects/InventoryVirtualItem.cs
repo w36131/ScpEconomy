@@ -2,6 +2,6 @@
 {
     public abstract class InventoryVirtualItem : VirtualItem
     {
-
+        public abstract void OnUsed();
     }
 }
