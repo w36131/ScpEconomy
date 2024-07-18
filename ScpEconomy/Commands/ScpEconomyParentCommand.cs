@@ -26,7 +26,7 @@ namespace ScpEconomy.Commands
 
             foreach (var command in AllCommands)
             {
-                response += $"\n  <b>{command.Command}</b>\n  <size=20%>{command.Description}</size>\n";
+                response += $"\n  <b>{command.Command}</b>\n  <size=85%>{command.Description}</size>\n";
             }
 
             return false;

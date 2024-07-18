@@ -25,7 +25,7 @@ namespace ScpEconomy.Commands.Economy
 
             if(playerBalance == -1)
             {
-                response = "Error! Something went wrong. Sorry!";
+                response = "Something went wrong. Sorry!";
                 return false;
             }
 

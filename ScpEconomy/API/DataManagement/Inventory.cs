@@ -31,9 +31,6 @@ namespace ScpEconomy.API.DataManagement
                 inventory.Add(VirtualItem.RegisteredVirtualItems.First(x => x.Name == virtualItem));
             }
 
-            if (inventory.Count == 0)
-                inventory = null;
-
             return inventory;
         }
         public static List<VirtualItem> GetInventory(string userId)
@@ -57,9 +54,6 @@ namespace ScpEconomy.API.DataManagement
 
                 inventory.Add(VirtualItem.RegisteredVirtualItems.First(x => x.Name == virtualItem));
             }
-
-            if (inventory.Count == 0)
-                inventory = null;
 
             return inventory;
         }

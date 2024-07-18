@@ -33,7 +33,7 @@ namespace ScpEconomy.Commands.Economy
 
             if(playerInventory == null)
             {
-                response = "Error! Something went wrong. Sorry!";
+                response = "Something went wrong. Sorry!";
                 return false;
             }
 
