@@ -3,6 +3,7 @@ using PluginAPI.Core;
 using ScpEconomy.API.DataObjects;
 using ScpEconomy.API;
 using System;
+using System.Linq;
 
 namespace ScpEconomy.Commands.Economy
 {
@@ -19,10 +20,10 @@ namespace ScpEconomy.Commands.Economy
 
             response = "\n\n Item shop of this server:\n";
 
-            /*foreach (var virtualItem in playerData.Inventory)
+            foreach (var virtualItem in Plugin.Instance.Config.ItemShop)
             {
-                response += $"\n  <color={VirtualItem.RegisteredVirtualItems.FirstOrDefault(x => x.Name == virtualItem).ItemColor.ToHex()}><b>{VirtualItem.RegisteredVirtualItems.FirstOrDefault(x => x.Name == virtualItem).Name}</b></color>\n  <size=20%><color={VirtualItem.RegisteredVirtualItems.FirstOrDefault(x => x.Name == virtualItem).ItemColor.ToHex()}>{VirtualItem.RegisteredVirtualItems.FirstOrDefault(x => x.Name == virtualItem).Description}</color></size>\n";
-            }*/
+                response += $"\n  <color={VirtualItem.RegisteredVirtualItems.FirstOrDefault(x => x.Name == virtualItem).VirtualItemColor.ToHex()}><b>{VirtualItem.RegisteredVirtualItems.FirstOrDefault(x => x.Name == virtualItem).Name}</b></color>\n  <size=20%><color={VirtualItem.RegisteredVirtualItems.FirstOrDefault(x => x.Name == virtualItem).VirtualItemColor.ToHex()}>{VirtualItem.RegisteredVirtualItems.FirstOrDefault(x => x.Name == virtualItem).Description}</color></size>\n";
+            }
 
             return true;
         }
