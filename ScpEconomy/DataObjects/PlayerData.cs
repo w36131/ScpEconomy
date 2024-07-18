@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ScpEconomy.API.DataObjects
+namespace ScpEconomy.DataObjects
 {
     public class PlayerData
     {

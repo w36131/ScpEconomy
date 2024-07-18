@@ -64,16 +64,16 @@
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>D:\References\SCP Secret Laboratory Dedicated Server\13.5.0\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
+    <Reference Include="YamlDotNet, Version=11.0.0.0, Culture=neutral, PublicKeyToken=ec19458f3c15af5e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\References\SCP Secret Laboratory Dedicated Server\13.5.0\YamlDotNet.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\DataObjects\CollectableVirtualItem.cs" />
-    <Compile Include="API\DataObjects\PlayerData.cs" />
-    <Compile Include="API\DataObjects\InventoryVirtualItem.cs" />
-    <Compile Include="API\DataObjects\VirtualItem.cs" />
-    <Compile Include="API\DataManagement\ItemShop.cs" />
-    <Compile Include="API\DataManagement\Inventory.cs" />
-    <Compile Include="API\DataManagement\Wallet.cs" />
-    <Compile Include="API\Logger.cs" />
+    <Compile Include="DataObjects\PlayerData.cs" />
+    <Compile Include="DataManagement\ItemShop.cs" />
+    <Compile Include="DataManagement\Inventory.cs" />
+    <Compile Include="DataManagement\Wallet.cs" />
     <Compile Include="Commands\Administrative\SetBalance.cs" />
     <Compile Include="Commands\ScpEconomyParentCommand.cs" />
     <Compile Include="Commands\Economy\InventoryCommand.cs" />
@@ -81,8 +81,12 @@
     <Compile Include="Commands\Economy\WalletCommand.cs" />
     <Compile Include="Commands\EconomyParentCommand.cs" />
     <Compile Include="Config.cs" />
+    <Compile Include="DataObjects\VirtualItem.cs" />
+    <Compile Include="Enums\VirtualItemAttribute.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PurchaseActions\ExecuteCommandPurchaseAction.cs" />
+    <Compile Include="PurchaseActions\PurchaseAction.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

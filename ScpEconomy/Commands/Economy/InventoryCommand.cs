@@ -1,14 +1,7 @@
 ﻿using CommandSystem;
-using Microsoft.Win32;
 using PluginAPI.Core;
-using ScpEconomy.API.DataObjects;
+using ScpEconomy.DataManagement;
 using System;
-using Mirror;
-using ScpEconomy.API;
-using System.Linq;
-using RemoteAdmin;
-using PluginAPI.Commands;
-using ScpEconomy.API.DataManagement;
 
 namespace ScpEconomy.Commands.Economy
 {
@@ -29,7 +22,7 @@ namespace ScpEconomy.Commands.Economy
                 return false;
             }
 
-            var playerInventory = API.DataManagement.Inventory.GetInventory(playerSender);
+            var playerInventory = Inventory.Get(playerSender);
 
             if(playerInventory == null)
             {
@@ -41,9 +34,10 @@ namespace ScpEconomy.Commands.Economy
 
             foreach (var virtualItem in playerInventory)
             {
-                response += $"\n  <color={VirtualItem.RegisteredVirtualItems.FirstOrDefault(x => x.Name == virtualItem.Name).VirtualItemColor.ToHex()}><b>{VirtualItem.RegisteredVirtualItems.FirstOrDefault(x => x.Name == virtualItem.Name).Name}</b></color>\n  <size=20%><color={VirtualItem.RegisteredVirtualItems.FirstOrDefault(x => x.Name == virtualItem.Name).VirtualItemColor.ToHex()}>{VirtualItem.RegisteredVirtualItems.FirstOrDefault(x => x.Name == virtualItem.Name).Description}</color></size>\n";
+                response += $"\n  <color={virtualItem.Color.ToHex()}><b>{virtualItem.Name}</b></color>\n  <size=20%><color={virtualItem.Color.ToHex()}>{virtualItem.Description}</color></size>\n";
             }
 
+            response = string.Empty;
             return true;
         }
     }

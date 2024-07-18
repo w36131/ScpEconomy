@@ -1,28 +1,27 @@
-﻿using PluginAPI.Enums;
+﻿using PluginAPI.Core;
+using PluginAPI.Events;
+using PluginAPI.Enums;
 using PluginAPI.Core.Attributes;
 using System;
 using System.IO;
-using PluginAPI.Events;
-using PluginAPI.Core;
-using ScpEconomy.API.DataObjects;
 using Utf8Json;
-using System.Reflection;
-using ScpEconomy.API;
+using ScpEconomy.DataObjects;
+using YamlDotNet.Serialization;
+using System.Collections.Generic;
+using System.Text;
 
 namespace ScpEconomy
 {
     public class Plugin
     {
-        public const string PluginVersion = "0.0.0";
-
         public static Plugin Instance { get; private set; }
 
         [PluginConfig]
         public Config Config;
 
-        public static string PlayerDataDirectory { get; private set; }
+        public static string DataDirectory { get; private set; }
 
-        [PluginEntryPoint("ScpEconomy", PluginVersion, "Plugin that adds economy to your SCP:SL server.", "w36131")]
+        [PluginEntryPoint("ScpEconomy", "0.0.0", "Plugin that adds economy to your SCP:SL server.", "w36131")]
         public void OnLoad()
         {
             if (!Config.IsEnabled)
@@ -30,18 +29,52 @@ namespace ScpEconomy
 
             Instance = this;
 
-            ServerConsole.AddLog($"ScpEconomy-{PluginVersion} has been loaded.\nBy w36131", ConsoleColor.Green);
+            ServerConsole.AddLog($"ScpEconomy has been loaded.\nBy w36131", ConsoleColor.Green);
 
-            PlayerDataDirectory = Path.Combine(Path.GetDirectoryName(PluginHandler.Get(this).MainConfigPath), "PlayerData");
+            DataDirectory = Path.Combine(Path.GetDirectoryName(PluginHandler.Get(this).MainConfigPath), "Data");
 
             try
             {
-                if (!Directory.Exists(PlayerDataDirectory))
-                    Directory.CreateDirectory(PlayerDataDirectory);
+                if (!Directory.Exists(DataDirectory))
+                    Directory.CreateDirectory(DataDirectory);
+
+                if (!Directory.Exists(DataDirectory + "\\Players"))
+                    Directory.CreateDirectory(DataDirectory + "\\Players");
             }
-            catch (Exception ex)
+            catch (Exception ex) { ServerConsole.AddLog($"[ScpEconomy:ERROR] Exception has been thrown while creating directories: {ex}", ConsoleColor.Red); }
+
+            if (!File.Exists(DataDirectory + "\\ItemShop.yml"))
             {
-                Logger.AddError($"Exception has been thrown: {ex}.");
+                try
+                {
+                    var a = new List<VirtualItem>();
+                    a.Add(new VirtualItem{ Name = "test" });
+
+                    var yamlSerializer = new SerializerBuilder().Build();
+
+                    var serializedString = yamlSerializer.Serialize(a);
+
+                    using (FileStream fileStraem = File.Create(DataDirectory + "\\ItemShop.yml"))
+                    {
+                        fileStraem.Write(Encoding.Default.GetBytes(serializedString), 0, Encoding.Default.GetBytes(serializedString).Length);
+
+                        fileStraem.Close();
+                    }
+                }
+                catch (Exception ex) { ServerConsole.AddLog($"[ScpEconomy:ERROR] Exception has been thrown while creating the item shop file: {ex}", ConsoleColor.Red); }
+            }
+            else
+            {
+                try
+                {
+                    var yamlDeserializer = new DeserializerBuilder().Build();
+
+                    foreach (var virtualItem in yamlDeserializer.Deserialize<List<VirtualItem>>(File.ReadAllText(DataDirectory + "\\ItemShop.yml")))
+                    {
+                        VirtualItem.Registered.Add(virtualItem);
+                    }
+                }
+                catch (Exception ex) { ServerConsole.AddLog($"[ScpEconomy:ERROR] Exception has been thrown while reading the item shop file: {ex}", ConsoleColor.Red); }
             }
 
             EventManager.RegisterAllEvents(this);
@@ -62,31 +95,25 @@ namespace ScpEconomy
             {
                 if (ev.Player.DoNotTrack == true)
                 {
-                    if (File.Exists(PlayerDataDirectory + $"\\{ev.Player.UserId}.json"))
-                        File.Delete(PlayerDataDirectory + $"\\{ev.Player.UserId}.json");
+                    if (File.Exists(DataDirectory + $"\\Players\\{ev.Player.UserId}.json"))
+                        File.Delete(DataDirectory + $"\\Players\\{ev.Player.UserId}.json");
 
                     return;
                 }
 
-                if (File.Exists(PlayerDataDirectory + $"\\{ev.Player.UserId}.json"))
+                if (File.Exists(DataDirectory + $"\\Players\\{ev.Player.UserId}.json"))
                     return;
 
-                var playerData = new PlayerData
-                {
-                    UserId = ev.Player.UserId,
-                };
+                var playerData = new PlayerData { UserId = ev.Player.UserId };
 
-                using (FileStream fileStream = File.Create(PlayerDataDirectory + $"\\{ev.Player.UserId}.json"))
+                using (FileStream fileStream = File.Create(DataDirectory + $"\\Players\\{ev.Player.UserId}.json"))
                 {
                     fileStream.Write(JsonSerializer.Serialize(playerData), 0, JsonSerializer.Serialize(playerData).Length);
 
                     fileStream.Close();
                 }
             }
-            catch (Exception ex)
-            {
-                Logger.AddError($"[ScpEconomy:ERROR] Exception has been thrown: {ex}.");
-            }
+            catch(Exception ex) { ServerConsole.AddLog($"[ScpEconomy:ERROR] Exception has been thrown while handling player joining: {ex}", ConsoleColor.Red); }
         }
     }
 }

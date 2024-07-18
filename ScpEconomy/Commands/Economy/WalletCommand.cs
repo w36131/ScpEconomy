@@ -1,5 +1,6 @@
 ﻿using CommandSystem;
 using PluginAPI.Core;
+using ScpEconomy.DataManagement;
 using System;
 
 namespace ScpEconomy.Commands.Economy
@@ -21,7 +22,7 @@ namespace ScpEconomy.Commands.Economy
                 return false;
             }
 
-            API.DataManagement.Wallet.GetBalance(playerSender, out int playerBalance);
+            Wallet.Get(playerSender, out int playerBalance);
 
             if(playerBalance == -1)
             {
@@ -29,7 +30,7 @@ namespace ScpEconomy.Commands.Economy
                 return false;
             }
 
-            response = $"\n\n <b>Your balance: {playerBalance} {Plugin.Instance.Config.Currency}</b>";
+            response = $"\n\n <b>Your balance: {playerBalance}</b>";
             return true;
         }
     }

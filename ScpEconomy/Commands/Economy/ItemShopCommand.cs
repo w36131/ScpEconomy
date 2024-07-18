@@ -1,9 +1,7 @@
 ﻿using CommandSystem;
 using PluginAPI.Core;
-using ScpEconomy.API.DataObjects;
-using ScpEconomy.API;
+using ScpEconomy.DataManagement;
 using System;
-using System.Linq;
 
 namespace ScpEconomy.Commands.Economy
 {
@@ -20,9 +18,9 @@ namespace ScpEconomy.Commands.Economy
 
             response = "\n\n Item shop of this server:\n";
 
-            foreach (var virtualItem in Plugin.Instance.Config.ItemShop)
+            foreach (var virtualItem in ItemShop.Get())
             {
-                response += $"\n  <color={VirtualItem.RegisteredVirtualItems.FirstOrDefault(x => x.Name == virtualItem).VirtualItemColor.ToHex()}><b>{VirtualItem.RegisteredVirtualItems.FirstOrDefault(x => x.Name == virtualItem).Name}</b></color>\n  <size=20%><color={VirtualItem.RegisteredVirtualItems.FirstOrDefault(x => x.Name == virtualItem).VirtualItemColor.ToHex()}>{VirtualItem.RegisteredVirtualItems.FirstOrDefault(x => x.Name == virtualItem).Description}</color></size>\n";
+                response += $"\n  <color={virtualItem.Color.ToHex()}><b>{virtualItem.Name}</b> <size=20%>Price: <i>{(virtualItem.Price <= 0 ? "Free" : virtualItem.Price)}</i></size></color>\n  <size=20%><color={virtualItem.Color.ToHex()}>{virtualItem.Description}</color></size>\n";
             }
 
             return true;

@@ -1,9 +1,7 @@
 ﻿using CommandSystem;
 using PluginAPI.Core;
-using ScpEconomy.API.DataObjects;
-using ScpEconomy.API;
+using ScpEconomy.DataManagement;
 using System;
-using ScpEconomy.API.DataManagement;
 using System.IO;
 
 namespace ScpEconomy.Commands.Administrative
@@ -39,8 +37,8 @@ namespace ScpEconomy.Commands.Administrative
                     return false;
                 }
 
-                Wallet.SetBalance(playerSender, newSenderBalance);
-                response = $"Nice! Your balance was successfully set to {newSenderBalance} {Plugin.Instance.Config.Currency}.";
+                Wallet.Set(playerSender, newSenderBalance);
+                response = $"Nice! Your balance was successfully set to {newSenderBalance}.";
                 return true;
             }
 
@@ -61,10 +59,10 @@ namespace ScpEconomy.Commands.Administrative
             {
                 if (targetPlayer == null)
                 {
-                    if (File.Exists(Plugin.PlayerDataDirectory + $"{arguments.At(0)}.json"))
+                    if (File.Exists(Plugin.DataDirectory + $"\\Players\\{arguments.At(0)}.json"))
                     {
-                        Wallet.SetBalance(arguments.At(0), newTargetBalance);
-                        response = $"Nice! Balance of {arguments.At(0)} was successfully set to {newTargetBalance} {Plugin.Instance.Config.Currency}.";
+                        Wallet.Set(arguments.At(0), newTargetBalance);
+                        response = $"Nice! Balance of {arguments.At(0)} was successfully set to {newTargetBalance}.";
                         return true;
                     }
 
@@ -73,8 +71,8 @@ namespace ScpEconomy.Commands.Administrative
                 }
                 else
                 {
-                    Wallet.SetBalance(targetPlayer, newTargetBalance);
-                    response = $"Nice! Balance of {targetPlayer.DisplayNickname} was successfully set to {newTargetBalance} {Plugin.Instance.Config.Currency}.";
+                    Wallet.Set(targetPlayer, newTargetBalance);
+                    response = $"Nice! Balance of {targetPlayer.DisplayNickname} was successfully set to {newTargetBalance}.";
                     return true;
                 }
             }

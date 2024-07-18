@@ -1,6 +1,5 @@
 ﻿using CommandSystem;
 using ScpEconomy.Commands.Administrative;
-using ScpEconomy.Commands.Economy;
 using System;
 
 namespace ScpEconomy.Commands
