@@ -1,4 +1,5 @@
 ﻿using CommandSystem;
+using ScpEconomy.Commands.Administrative;
 using ScpEconomy.Commands.Economy;
 using System;
 
@@ -16,7 +17,7 @@ namespace ScpEconomy.Commands
 
         public override void LoadGeneratedCommands()
         {
-
+            RegisterCommand(new SetBalance());
         }
 
         protected override bool ExecuteParent(ArraySegment<string> arguments, ICommandSender sender, out string response)

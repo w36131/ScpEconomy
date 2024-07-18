@@ -75,14 +75,13 @@
     <Compile Include="API\DataManagement\Wallet.cs" />
     <Compile Include="Commands\Administrative\SetBalance.cs" />
     <Compile Include="Commands\ScpEconomyParentCommand.cs" />
-    <Compile Include="Commands\Economy\Inventory.cs" />
-    <Compile Include="Commands\Economy\ItemShop.cs" />
-    <Compile Include="Commands\Economy\Wallet.cs" />
+    <Compile Include="Commands\Economy\InventoryCommand.cs" />
+    <Compile Include="Commands\Economy\ItemShopCommand.cs" />
+    <Compile Include="Commands\Economy\WalletCommand.cs" />
     <Compile Include="Commands\EconomyParentCommand.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestItem.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

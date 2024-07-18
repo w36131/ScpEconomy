@@ -12,7 +12,7 @@ using ScpEconomy.API.DataManagement;
 
 namespace ScpEconomy.Commands.Economy
 {
-    public class Inventory : ICommand
+    public class InventoryCommand : ICommand
     {
         public string Command => "Inventory";
         public string[] Aliases { get; } = { "Inv" };

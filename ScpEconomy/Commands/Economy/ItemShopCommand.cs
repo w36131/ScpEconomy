@@ -6,7 +6,7 @@ using System;
 
 namespace ScpEconomy.Commands.Economy
 {
-    public class ItemShop : ICommand
+    public class ItemShopCommand : ICommand
     {
         public string Command => "ItemShop";
         public string[] Aliases { get; } = { "Shop", "Store", "ItemStore" };

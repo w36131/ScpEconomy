@@ -4,7 +4,7 @@ using System;
 
 namespace ScpEconomy.Commands.Economy
 {
-    public class Wallet : ICommand
+    public class WalletCommand : ICommand
     {
         public string Command => "Wallet";
         public string[] Aliases { get; } = { "Balance", "Bal" };

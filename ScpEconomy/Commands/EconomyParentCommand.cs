@@ -16,9 +16,9 @@ namespace ScpEconomy.Commands
 
         public override void LoadGeneratedCommands()
         {
-            RegisterCommand(new Wallet());
-            RegisterCommand(new Inventory());
-            RegisterCommand(new ItemShop());
+            RegisterCommand(new WalletCommand());
+            RegisterCommand(new InventoryCommand());
+            RegisterCommand(new ItemShopCommand());
         }
 
         protected override bool ExecuteParent(ArraySegment<string> arguments, ICommandSender sender, out string response)
