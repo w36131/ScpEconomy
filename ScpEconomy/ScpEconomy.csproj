@@ -42,6 +42,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>D:\References\SCP Secret Laboratory Dedicated Server\13.5.0\CommandSystem.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Mirror, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\References\SCP Secret Laboratory Dedicated Server\13.5.0\Mirror.dll</HintPath>
+    </Reference>
     <Reference Include="PluginAPI">
       <HintPath>D:\References\SCP Secret Laboratory Dedicated Server\13.5.0\PluginAPI.dll</HintPath>
     </Reference>
@@ -62,15 +66,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\DataManagement.cs" />
     <Compile Include="API\DataObjects\CollectableVirtualItem.cs" />
     <Compile Include="API\DataObjects\PlayerData.cs" />
     <Compile Include="API\DataObjects\InventoryVirtualItem.cs" />
     <Compile Include="API\DataObjects\VirtualItem.cs" />
+    <Compile Include="API\DataManagement\ItemShop.cs" />
+    <Compile Include="API\DataManagement\Inventory.cs" />
+    <Compile Include="API\DataManagement\Wallet.cs" />
+    <Compile Include="Commands\Administrative\SetBalance.cs" />
     <Compile Include="Commands\ScpEconomyParentCommand.cs" />
+    <Compile Include="Commands\Economy\InventoryCommand.cs" />
+    <Compile Include="Commands\Economy\ItemShopCommand.cs" />
+    <Compile Include="Commands\Economy\WalletCommand.cs" />
+    <Compile Include="Commands\EconomyParentCommand.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

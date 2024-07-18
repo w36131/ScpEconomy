@@ -1,23 +1,24 @@
 ﻿using CommandSystem;
-using ScpEconomy.Commands.Administrative;
 using ScpEconomy.Commands.Economy;
 using System;
 
 namespace ScpEconomy.Commands
 {
-    [CommandHandler(typeof(RemoteAdminCommandHandler))]
-    public class ScpEconomyParentCommand : ParentCommand, ICommand
+    [CommandHandler(typeof(ClientCommandHandler))]
+    public class EconomyParentCommand : ParentCommand, ICommand
     {
-        public ScpEconomyParentCommand() => LoadGeneratedCommands();
+        public EconomyParentCommand() => LoadGeneratedCommands();
 
-        public override string Command => "ScpEconomy";
-        public override string[] Aliases { get; } = { "ScpEco" };
-        public override string Description => "ScpEconomy parent command.";
+        public override string Command => "Economy";
+        public override string[] Aliases { get; } = { "Eco" };
+        public override string Description => "Economy parent command.";
         public bool SanitizeResponse => false;
 
         public override void LoadGeneratedCommands()
         {
-            RegisterCommand(new SetBalance());
+            RegisterCommand(new WalletCommand());
+            RegisterCommand(new InventoryCommand());
+            RegisterCommand(new ItemShopCommand());
         }
 
         protected override bool ExecuteParent(ArraySegment<string> arguments, ICommandSender sender, out string response)
