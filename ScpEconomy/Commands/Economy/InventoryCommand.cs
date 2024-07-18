@@ -39,10 +39,6 @@ namespace ScpEconomy.Commands.Economy
 
             response = "\n\n Your inventory:\n";
 
-            Log.Info("")
-
-            API.DataManagement.Inventory.AddVirtualItem(playerSender, "TestItem");
-
             foreach (var virtualItem in playerInventory)
             {
                 response += $"\n  <color={VirtualItem.RegisteredVirtualItems.FirstOrDefault(x => x.Name == virtualItem.Name).VirtualItemColor.ToHex()}><b>{VirtualItem.RegisteredVirtualItems.FirstOrDefault(x => x.Name == virtualItem.Name).Name}</b></color>\n  <size=20%><color={VirtualItem.RegisteredVirtualItems.FirstOrDefault(x => x.Name == virtualItem.Name).VirtualItemColor.ToHex()}>{VirtualItem.RegisteredVirtualItems.FirstOrDefault(x => x.Name == virtualItem.Name).Description}</color></size>\n";
