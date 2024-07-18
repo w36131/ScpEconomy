@@ -73,6 +73,7 @@
     <Compile Include="API\DataManagement\ItemShop.cs" />
     <Compile Include="API\DataManagement\Inventory.cs" />
     <Compile Include="API\DataManagement\Wallet.cs" />
+    <Compile Include="API\Logger.cs" />
     <Compile Include="Commands\Administrative\SetBalance.cs" />
     <Compile Include="Commands\ScpEconomyParentCommand.cs" />
     <Compile Include="Commands\Economy\InventoryCommand.cs" />

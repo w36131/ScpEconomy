@@ -6,6 +6,8 @@ using PluginAPI.Events;
 using PluginAPI.Core;
 using ScpEconomy.API.DataObjects;
 using Utf8Json;
+using System.Reflection;
+using ScpEconomy.API;
 
 namespace ScpEconomy
 {
@@ -39,7 +41,7 @@ namespace ScpEconomy
             }
             catch (Exception ex)
             {
-                ServerConsole.AddLog($"[ScpEconomy:ERROR] Exception has been thrown: {ex}.", ConsoleColor.Red);
+                Logger.AddError($"Exception has been thrown: {ex}.");
             }
 
             EventManager.RegisterAllEvents(this);
@@ -83,7 +85,7 @@ namespace ScpEconomy
             }
             catch (Exception ex)
             {
-                ServerConsole.AddLog($"[ScpEconomy:ERROR] Exception has been thrown: {ex}.", ConsoleColor.Red);
+                Logger.AddError($"[ScpEconomy:ERROR] Exception has been thrown: {ex}.");
             }
         }
     }
