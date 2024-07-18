@@ -2,8 +2,13 @@
 using PluginAPI.Core.Attributes;
 using System;
 using System.IO;
+using System.Text;
 using PluginAPI.Events;
 using PluginAPI.Core;
+using ScpEconomy.API.DataObjects;
+using Utf8Json;
+using MEC;
+using System.Configuration;
 
 namespace ScpEconomy
 {
@@ -16,7 +21,7 @@ namespace ScpEconomy
         [PluginConfig]
         public Config Config;
 
-        public string PlayerDataDirectory { get; private set; }
+        public static string PlayerDataDirectory { get; private set; }
 
         [PluginEntryPoint("ScpEconomy", PluginVersion, "Plugin that adds economy to your SCP:SL server.", "w36131")]
         public void OnLoad()
@@ -31,9 +36,7 @@ namespace ScpEconomy
             PlayerDataDirectory = Path.Combine(Path.GetDirectoryName(PluginHandler.Get(this).MainConfigPath), "PlayerData");
 
             if (!Directory.Exists(PlayerDataDirectory))
-            {
                 Directory.CreateDirectory(PlayerDataDirectory);
-            }
 
             EventManager.RegisterAllEvents(this);
         }
@@ -49,7 +52,33 @@ namespace ScpEconomy
         [PluginEvent(ServerEventType.PlayerJoined)]
         public void OnPlayerJoined(PlayerJoinedEvent ev)
         {
+            try
+            {
+                if (ev.Player.DoNotTrack == true)
+                {
+                    if (File.Exists(PlayerDataDirectory + $"\\{ev.Player.UserId}.json"))
+                        File.Delete(PlayerDataDirectory + $"\\{ev.Player.UserId}.json");
 
+                    return;
+                }
+
+                if (File.Exists(PlayerDataDirectory + $"\\{ev.Player.UserId}.json"))
+                    return;
+
+                var playerData = new PlayerData
+                {
+                    SteamId = ev.Player.UserId,
+                };
+
+                using (FileStream fileStream = File.Create(PlayerDataDirectory + $"\\{ev.Player.UserId}.json"))
+                {
+                    fileStream.Write(JsonSerializer.Serialize(playerData), 0, JsonSerializer.Serialize(playerData).Length);
+                }
+            }
+            catch (Exception e)
+            {
+                ServerConsole.AddLog($"[ScpEconomy:ERROR] ScpEconomy threw an exception: {e}.", ConsoleColor.Red);
+            }
         }
     }
 }
