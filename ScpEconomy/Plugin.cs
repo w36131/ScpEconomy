@@ -64,7 +64,7 @@ namespace ScpEconomy
 
                 var playerData = new PlayerData
                 {
-                    SteamId = ev.Player.UserId,
+                    UserId = ev.Player.UserId,
                 };
 
                 using (FileStream fileStream = File.Create(PlayerDataDirectory + $"\\{ev.Player.UserId}.json"))
@@ -74,7 +74,7 @@ namespace ScpEconomy
             }
             catch (Exception e)
             {
-                ServerConsole.AddLog($"[ScpEconomy:ERROR] ScpEconomy threw an exception: {e}.", ConsoleColor.Red);
+                ServerConsole.AddLog($"[ScpEconomy:ERROR] Exception has been thrown: {e}.", ConsoleColor.Red);
             }
         }
     }

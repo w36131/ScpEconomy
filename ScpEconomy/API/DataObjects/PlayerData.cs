@@ -2,7 +2,7 @@
 {
     public class PlayerData
     {
-        public string SteamId { get; set; }
+        public string UserId { get; set; }
         public int Credits { get; set; } = 0;
     }
 }
