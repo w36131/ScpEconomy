@@ -2,13 +2,10 @@
 using PluginAPI.Core.Attributes;
 using System;
 using System.IO;
-using System.Text;
 using PluginAPI.Events;
 using PluginAPI.Core;
 using ScpEconomy.API.DataObjects;
 using Utf8Json;
-using MEC;
-using System.Configuration;
 
 namespace ScpEconomy
 {
