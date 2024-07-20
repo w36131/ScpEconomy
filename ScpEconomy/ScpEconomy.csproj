@@ -70,6 +70,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\Economy\PurchaseCommand.cs" />
     <Compile Include="DataObjects\PlayerData.cs" />
     <Compile Include="DataManagement\ItemShop.cs" />
     <Compile Include="DataManagement\Inventory.cs" />
@@ -81,10 +82,12 @@
     <Compile Include="Commands\Economy\WalletCommand.cs" />
     <Compile Include="Commands\EconomyParentCommand.cs" />
     <Compile Include="Config.cs" />
+    <Compile Include="DataObjects\TemporaryBadge.cs" />
     <Compile Include="DataObjects\VirtualItem.cs" />
-    <Compile Include="Enums\VirtualItemAttribute.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PurchaseActions\AssignBadgePurchaseAction.cs" />
+    <Compile Include="PurchaseActions\AddToInventoryPurchaseAction.cs" />
     <Compile Include="PurchaseActions\ExecuteCommandPurchaseAction.cs" />
     <Compile Include="PurchaseActions\PurchaseAction.cs" />
   </ItemGroup>

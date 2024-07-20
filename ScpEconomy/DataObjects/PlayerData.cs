@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using ScpEconomy.PurchaseActions;
+using System.Collections.Generic;
 
 namespace ScpEconomy.DataObjects
 {
@@ -7,5 +8,6 @@ namespace ScpEconomy.DataObjects
         public string UserId { get; set; }
         public int Balance { get; set; } = 0;
         public List<string> Inventory { get; set; } = new();
+        public TemporaryBadge TemporaryBadge {  get; set; }
     }
 }

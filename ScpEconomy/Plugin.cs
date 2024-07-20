@@ -9,6 +9,10 @@ using ScpEconomy.DataObjects;
 using YamlDotNet.Serialization;
 using System.Collections.Generic;
 using System.Text;
+using ScpEconomy.PurchaseActions;
+using UnityEngine;
+using Discord;
+using System.Linq;
 
 namespace ScpEconomy
 {
@@ -47,12 +51,9 @@ namespace ScpEconomy
             {
                 try
                 {
-                    var a = new List<VirtualItem>();
-                    a.Add(new VirtualItem{ Name = "test" });
-
                     var yamlSerializer = new SerializerBuilder().Build();
 
-                    var serializedString = yamlSerializer.Serialize(a);
+                    var serializedString = yamlSerializer.Serialize(new List<VirtualItem>());
 
                     using (FileStream fileStraem = File.Create(DataDirectory + "\\ItemShop.yml"))
                     {
@@ -67,7 +68,7 @@ namespace ScpEconomy
             {
                 try
                 {
-                    var yamlDeserializer = new DeserializerBuilder().Build();
+                    var yamlDeserializer = new DeserializerBuilder().WithTagMapping("!AddToInventory", typeof(AddToInventoryPurchaseAction)).WithTagMapping("!AssignBadge", typeof(AssignBadgePurchaseAction)).WithTagMapping("!ExecuteCommand", typeof(ExecuteCommandPurchaseAction)).Build();
 
                     foreach (var virtualItem in yamlDeserializer.Deserialize<List<VirtualItem>>(File.ReadAllText(DataDirectory + "\\ItemShop.yml")))
                     {
@@ -102,7 +103,29 @@ namespace ScpEconomy
                 }
 
                 if (File.Exists(DataDirectory + $"\\Players\\{ev.Player.UserId}.json"))
+                {
+                    string readText = File.ReadAllText(DataDirectory + $"\\Players\\{ev.Player.UserId}.json");
+
+                    var deserializedPlayerData = JsonSerializer.Deserialize<PlayerData>(readText);
+
+                    if (deserializedPlayerData.TemporaryBadge == null)
+                        return;
+
+                    if (DateTime.UtcNow > deserializedPlayerData.TemporaryBadge.To)
+                    {
+                        deserializedPlayerData.TemporaryBadge = null;
+                    }
+                    else
+                    {
+                        var serverGroups = ServerStatic.GetPermissionsHandler().GetAllGroups();
+
+                        if (!serverGroups.ContainsKey(deserializedPlayerData.TemporaryBadge.GroupName))
+                            return;
+
+                        ev.Player.ReferenceHub.serverRoles.SetGroup(serverGroups.FirstOrDefault(x => x.Key == deserializedPlayerData.TemporaryBadge.GroupName).Value);
+                    }
                     return;
+                }
 
                 var playerData = new PlayerData { UserId = ev.Player.UserId };
 

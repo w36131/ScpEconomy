@@ -1,4 +1,5 @@
 ﻿using ScpEconomy.DataObjects;
+using ScpEconomy.PurchaseActions;
 using System.Collections.Generic;
 using System.IO;
 using YamlDotNet.Serialization;
@@ -13,7 +14,7 @@ namespace ScpEconomy.DataManagement
 
             if (File.Exists(Plugin.DataDirectory + "\\ItemShop.yml"))
             {
-                var yamlDeserializer = new DeserializerBuilder().Build();
+                var yamlDeserializer = new DeserializerBuilder().WithTagMapping("!AddToInventory", typeof(AddToInventoryPurchaseAction)).WithTagMapping("!AssignBadge", typeof(AssignBadgePurchaseAction)).WithTagMapping("!ExecuteCommand", typeof(ExecuteCommandPurchaseAction)).Build();
 
                 foreach (var virtualItem in yamlDeserializer.Deserialize<List<VirtualItem>>(File.ReadAllText(Plugin.DataDirectory + "\\ItemShop.yml")))
                 {

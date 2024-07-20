@@ -19,6 +19,7 @@ namespace ScpEconomy.Commands
             RegisterCommand(new WalletCommand());
             RegisterCommand(new InventoryCommand());
             RegisterCommand(new ItemShopCommand());
+            RegisterCommand(new PurchaseCommand());
         }
 
         protected override bool ExecuteParent(ArraySegment<string> arguments, ICommandSender sender, out string response)

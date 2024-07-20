@@ -37,7 +37,6 @@ namespace ScpEconomy.Commands.Economy
                 response += $"\n  <color={virtualItem.Color.ToHex()}><b>{virtualItem.Name}</b></color>\n  <size=20%><color={virtualItem.Color.ToHex()}>{virtualItem.Description}</color></size>\n";
             }
 
-            response = string.Empty;
             return true;
         }
     }

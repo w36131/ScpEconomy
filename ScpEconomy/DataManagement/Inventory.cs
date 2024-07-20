@@ -1,6 +1,6 @@
 ﻿using PluginAPI.Core;
 using ScpEconomy.DataObjects;
-using ScpEconomy.Enums;
+using ScpEconomy.PurchaseActions;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -58,7 +58,7 @@ namespace ScpEconomy.DataManagement
             if (!File.Exists(Plugin.DataDirectory + $"\\Players\\{player.UserId}.json"))
                 return;
 
-            if (VirtualItem.Registered.Any(x => x.Name != virtualItemName || !x.Attributes.Contains(VirtualItemAttribute.InventoryVirtualItem)))
+            if (VirtualItem.Registered.Any(x => x.Name != virtualItemName || !x.PurchaseActions.Any(x => x.GetType() == typeof(AssignBadgePurchaseAction))))
                 return;
 
             string readText = File.ReadAllText(Plugin.DataDirectory + $"\\Players\\{player.UserId}.json");
@@ -78,7 +78,7 @@ namespace ScpEconomy.DataManagement
             if (!File.Exists(Plugin.DataDirectory + $"\\Players\\{userId}.json"))
                 return;
 
-            if (VirtualItem.Registered.Any(x => x.Name != virtualItemName || !x.Attributes.Contains(VirtualItemAttribute.InventoryVirtualItem)))
+            if (VirtualItem.Registered.Any(x => x.Name != virtualItemName || !x.PurchaseActions.Any(x => x.GetType() == typeof(AssignBadgePurchaseAction))))
                 return;
 
             string readText = File.ReadAllText(Plugin.DataDirectory + $"\\Players\\{userId}.json");

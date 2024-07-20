@@ -87,10 +87,10 @@ namespace ScpEconomy.DataManagement
 
             switch (modificationType)
             {
-                case BalanceModificationType.Add:
+                case ModificationType.Add:
                     deserializedPlayerData.Balance += amount;
                     break;
-                case BalanceModificationType.Subtract:
+                case ModificationType.Subtract:
                     deserializedPlayerData.Balance -= amount;
                     break;
             }
@@ -113,10 +113,10 @@ namespace ScpEconomy.DataManagement
 
             switch (modificationType)
             {
-                case BalanceModificationType.Add:
+                case ModificationType.Add:
                     deserializedPlayerData.Balance += amount;
                     break;
-                case BalanceModificationType.Subtract:
+                case ModificationType.Subtract:
                     deserializedPlayerData.Balance -= amount;
                     break;
             }
