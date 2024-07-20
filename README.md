@@ -13,6 +13,9 @@ To validate that everything loaded correctly. Look for any errors in the console
 ## How to add virtual items to the server item shop?
 
 Go to the directory where you installed the plugin, then go to /ScpEconomy/Data, and look for ItemShop.yml, then open it.
+
+![image](https://github.com/user-attachments/assets/533fd320-ada6-4757-94a1-42026eaf35a4)
+
 To add an virtual item paste this into the file:
 
 ```
