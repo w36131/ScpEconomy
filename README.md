@@ -1,7 +1,7 @@
 # ScpEconomy
 
-[!WARNING]
-Everything in this plugin is subject to change, you can use it at your server but you need to expect data-breaking updates.
+> [!WARNING]
+> Everything in this plugin is subject to change, you can use it at your server but you need to expect data-breaking updates.
 
 ## How to install the plugin correctly?
 
