@@ -13,6 +13,7 @@ using ScpEconomy.PurchaseActions;
 using UnityEngine;
 using Discord;
 using System.Linq;
+using ScpEconomy.DataManagement;
 
 namespace ScpEconomy
 {
@@ -137,6 +138,47 @@ namespace ScpEconomy
                 }
             }
             catch(Exception ex) { ServerConsole.AddLog($"[ScpEconomy:ERROR] Exception has been thrown while handling player joining: {ex}", ConsoleColor.Red); }
+        }
+
+        [PluginEvent(ServerEventType.PlayerDeath)]
+        public void OnPlayerDeath(PlayerDeathEvent ev)
+        {
+            if (ev.Attacker.Team == ev.Player.Team)
+                return;
+
+            if (ev.Player.IsSCP)
+            {
+                Wallet.Modify(ev.Attacker, Wallet.ModificationType.Add, Config.BalanceAddedForKillingScps);
+
+                if (!ev.Player.DoNotTrack)
+                    ShowEarnedBalanceHint(ev.Player, Config.BalanceAddedForKillingScps);
+
+                return;
+            }
+
+            if (ev.Player.IsHuman)
+            {
+                Wallet.Modify(ev.Attacker, Wallet.ModificationType.Add, Config.BalanceAddedForKillingEnemies);
+
+                if (!ev.Player.DoNotTrack)
+                    ShowEarnedBalanceHint(ev.Player, Config.BalanceAddedForKillingEnemies);
+
+                return;
+            }
+        }
+
+        [PluginEvent(ServerEventType.PlayerEscape)]
+        public void OnPlayerEscape(PlayerEscapeEvent ev)
+        {
+            Wallet.Modify(ev.Player, Wallet.ModificationType.Add, Config.BalanceForEscaping);
+
+            if (!ev.Player.DoNotTrack)
+                ShowEarnedBalanceHint(ev.Player, Config.BalanceForEscaping);
+        }
+
+        public void ShowEarnedBalanceHint(Player player, int earnedAmount)
+        {
+            player.ReceiveHint(Config.EaringBalanceHint.Replace("{Amount}", earnedAmount.ToString()), Config.EaringBalanceHintDuration);
         }
     }
 }
