@@ -1,5 +1,8 @@
 # ScpEconomy
 
+[!WARNING]
+Everything in this plugin is subject to change, you can use it at your server but you need to expect data-breaking updates.
+
 ## How to install the plugin correctly?
 
 If you want the plugin to have the same data all over yours servers that are hosted on the same machine, put the plugin in /PluginAPI/global, otherwise put it in /PluginAPI/{Your server port}.
