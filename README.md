@@ -3,6 +3,23 @@
 > [!WARNING]
 > Everything in this plugin is subject to change, you can use it at your community server but you have to expect data-breaking updates.
 
+## All available commands
+
+List of all plugin commands
+
+### Administrative (Remote admin)
+
+ScpEconomy
+ScpEconomy SetBalance
+
+### Economy (Game console)
+
+.Economy
+.Economy wallet
+.Economy inventory
+.Economy itemshop
+.Economy buy
+
 ## How to install the plugin correctly?
 
 If you want the plugin to have the same data all over yours servers that are hosted on the same machine, put the plugin in /PluginAPI/global, otherwise put it in /PluginAPI/{Your server port}.
