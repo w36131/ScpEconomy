@@ -34,7 +34,7 @@ To add an virtual item paste this into the file:
    - !AddToInventory
     Amount: 1
    - !AssignBadge
-    BadgeName: owner
+    GroupName: owner
     TimeSpan: 01:00:00
    - !ExecuteCommand
     Command: /cassie .g7
@@ -56,7 +56,7 @@ Of course you can add more buy just adding the same thing under.
    - !AddToInventory
     Amount: 1
    - !AssignBadge
-    BadgeName: owner
+    GroupName: owner
     TimeSpan: 01:00:00
    - !ExecuteCommand
     Command: /cassie .g7
@@ -72,7 +72,7 @@ Of course you can add more buy just adding the same thing under.
    - !AddToInventory
     Amount: 1
    - !AssignBadge
-    BadgeName: owner
+    GroupName: owner
     TimeSpan: 01:00:00
    - !ExecuteCommand
     Command: /cassie .g7
@@ -98,7 +98,7 @@ AssignBadge will grant the player a specified server role for a specified amount
 ```
   PurchaseActions:
    - !AssignBadge
-    BadgeName: owner
+    GroupName: owner
     TimeSpan: 01:00:00
 ```
 
