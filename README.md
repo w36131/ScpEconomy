@@ -1,5 +1,3 @@
-# ScpEconomy
-
 ![scpeconomy1028x256](https://github.com/user-attachments/assets/908690a7-feb3-4207-8da9-7b5791ab3ac8)
 
 > [!WARNING]
