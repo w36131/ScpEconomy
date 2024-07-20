@@ -1,6 +1,6 @@
 # ScpEconomy
 
-![scpeconomy1028x642](https://github.com/user-attachments/assets/fd77ac35-4415-4126-981a-ce71ea4e7405)
+![scpeconomy1028x256](https://github.com/user-attachments/assets/908690a7-feb3-4207-8da9-7b5791ab3ac8)
 
 > [!WARNING]
 > Everything in this plugin is subject to change, you can use it at your community server but you have to expect data-breaking updates.
