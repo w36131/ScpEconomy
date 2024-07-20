@@ -10,14 +10,19 @@ List of all plugin commands
 ### Administrative (Remote admin)
 
 ScpEconomy
+
 ScpEconomy SetBalance
 
 ### Economy (Game console)
 
 .Economy
+
 .Economy wallet
+
 .Economy inventory
+
 .Economy itemshop
+
 .Economy buy
 
 ## How to install the plugin correctly?
