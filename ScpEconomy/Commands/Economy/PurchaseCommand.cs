@@ -82,6 +82,8 @@ namespace ScpEconomy.Commands.Economy
                 }
             }
 
+            Wallet.Modify(playerSender, Wallet.ModificationType.Subtract, virtualItem.Price);
+
             response = $"Purchase complete!";
             return true;
         }
